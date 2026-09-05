@@ -1,0 +1,163 @@
+
+
+"use client";
+import React from "react";
+import { motion } from "framer-motion";
+import SupporterCard from "./SupporterCard/Card";
+import { FaHandshake, FaStar } from "react-icons/fa";
+
+const SupportersSection = () => {
+  const supporters = [
+    { imageSrc: "/images/Supporters/1.png", altText: "Supporter 1 - Company A" },
+    { imageSrc: "/images/Supporters/2.png", altText: "Supporter 2 - Company B" },
+    { imageSrc: "/images/Supporters/3.png", altText: "Supporter 3 - Company C" },
+    { imageSrc: "/images/Supporters/4.png", altText: "Supporter 4 - Company D" },
+    { imageSrc: "/images/Supporters/5.png", altText: "Supporter 5 - Company E" },
+    { imageSrc: "/images/Supporters/6.png", altText: "Supporter 6 - Company F" },
+    { imageSrc: "/images/Supporters/7.png", altText: "Supporter 7 - Company G" },
+    { imageSrc: "/images/Supporters/8.png", altText: "Supporter 8 - Company H" },
+    { imageSrc: "/images/Supporters/9.png", altText: "Supporter 9 - Company I" },
+    { imageSrc: "/images/Supporters/10.png", altText: "Supporter 10 - Company J" },
+    { imageSrc: "/images/Supporters/11.webp", altText: "Supporter 11 - Company K" },
+    { imageSrc: "/images/Supporters/12.png", altText: "Supporter 12 - Company L" },
+    { imageSrc: "/images/Supporters/13.png", altText: "Supporter 13 - Company M" },
+    { imageSrc: "/images/Supporters/14.png", altText: "Supporter 14 - Company N" },
+    { imageSrc: "/images/Supporters/15.png", altText: "Supporter 15 - Company O" },
+    { imageSrc: "/images/Supporters/16.png", altText: "Supporter 16 - Company P" },
+    { imageSrc: "/images/Supporters/17.png", altText: "Supporter 17 - Company Q" },
+    { imageSrc: "/images/Supporters/18.png", altText: "Supporter 18 - Company R" },
+    { imageSrc: "/images/Supporters/19.png", altText: "Supporter 19 - Company S" },
+  ];
+
+  return (
+    <section className="w-full py-20 md:py-32 bg-white relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-30" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-orange-50 rounded-full blur-3xl opacity-40" />
+      
+      {/* Grid pattern overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(30, 64, 175, 0.1) 1px, transparent 1px),
+                         linear-gradient(90deg, rgba(30, 64, 175, 0.1) 1px, transparent 1px)`,
+          backgroundSize: "60px 60px",
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+        {/* Header Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10 space-y-6"
+        >
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-50 border border-blue-200">
+            <FaHandshake className="w-4 h-4 text-[#f97316]" />
+            <span className="text-sm text-[#1e3a8a] font-semibold">
+              Trusted By Industry Leaders
+            </span>
+          </div>
+
+          {/* Main Heading */}
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-[#1f2937] leading-tight">
+            Our Valued{" "}
+            <span className="text-[#1e40af]">
+              Clients & Partners
+            </span>
+          </h2>
+
+          <p className="text-slate-600 text-xl max-w-2xl mx-auto">
+            Proud to collaborate with innovative companies worldwide
+          </p>
+
+          {/* Stats */}
+          <div className="flex items-center justify-center gap-8 pt-4">
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-full bg-[#1e40af] flex items-center justify-center">
+                <FaStar className="w-5 h-5 text-white" />
+              </div>
+              <div className="text-left">
+                <div className="text-2xl font-bold text-[#1f2937]">50+</div>
+                <div className="text-xs text-slate-500">Happy Clients</div>
+              </div>
+            </div>
+            <div className="w-px h-12 bg-gray-300" />
+            <div className="flex items-center gap-2">
+              <div className="w-10 h-10 rounded-full bg-[#f97316] flex items-center justify-center">
+                <FaHandshake className="w-5 h-5 text-white" />
+              </div>
+              <div className="text-left">
+                <div className="text-2xl font-bold text-[#1f2937]">500+</div>
+                <div className="text-xs text-slate-500">Projects Done</div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Marquee Container */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.8 }}
+          className="relative"
+        >
+          <div className="relative overflow-hidden group mb-4"> 
+            <div className="marquee-track animate-marquee-ltr flex items-center">
+            
+              {supporters.concat(supporters).map((supporter, index) => (
+                <div key={`supporter-top-${index}`} className="px-4 flex-shrink-0">
+                  <SupporterCard
+                    imageSrc={supporter.imageSrc}
+                    altText={supporter.altText}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Bottom Text */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          className="text-center mt-10"
+        >
+          <h1 className="text-[#1f2937] text-3xl md:text-4xl font-semibold leading-snug">
+            Join our growing family of satisfied clients and industry partners
+          </h1>
+        </motion.div>
+      </div>
+
+      {/* Marquee Styles */}
+      <style jsx>{`
+        .animate-marquee-ltr {
+          display: flex;
+          animation: marquee-ltr 40s linear infinite;
+          will-change: transform;
+        }
+
+        @keyframes marquee-ltr {
+          0% {
+            transform: translateX(0%);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        .group:hover .animate-marquee-ltr {
+          animation-play-state: paused;
+        }
+      `}</style>
+    </section>
+  );
+};
+
+export default SupportersSection;
