@@ -23,12 +23,19 @@ const Navbar = () => {
   const [isMobile, setIsMobile]         = useState(false);
   const [isScrolled, setIsScrolled]     = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [inScrollyHero, setInScrollyHero] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 1024);
     const handleScroll = () => {
-      // Transition smoothly after ~20-30px of scroll
       setIsScrolled(window.scrollY > 20);
+      const scrollyEl = document.getElementById("scrolly-hero");
+      if (scrollyEl) {
+        const rect = scrollyEl.getBoundingClientRect();
+        setInScrollyHero(rect.bottom > 80);
+      } else {
+        setInScrollyHero(false);
+      }
     };
 
     handleResize();
@@ -107,6 +114,10 @@ const Navbar = () => {
     <>
       <nav
         className={`w-full fixed top-0 z-50 transition-all duration-500 ease-in-out nav-entrance ${
+          inScrollyHero
+            ? "-translate-y-full opacity-0 pointer-events-none"
+            : "translate-y-0 opacity-100"
+        } ${
           isScrolled
             ? "bg-white/25 backdrop-blur-[24px] backdrop-saturate-[190%] shadow-[0_10px_30px_-5px_rgba(0,0,0,0.07)] border-b border-white/40"
             : "bg-white shadow-md border-b border-transparent"

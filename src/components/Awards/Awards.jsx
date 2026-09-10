@@ -116,17 +116,14 @@ export default function Awards() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-          <motion.div
+          <motion.span
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full bg-blue-50/80 border border-blue-200/80 shadow-xs"
+            className="block text-[11px] sm:text-xs font-bold tracking-[0.2em] uppercase text-[#1e40af] mb-3"
           >
-            <span className="h-2 w-2 rounded-full bg-[#f97316] animate-pulse" />
-            <span className="text-xs font-bold tracking-[0.18em] text-[#1e3a8a] uppercase">
-              Honours & Accolades
-            </span>
-          </motion.div>
+            Honours & Accolades
+          </motion.span>
 
           <motion.h2
             initial={{ opacity: 0, y: 10 }}

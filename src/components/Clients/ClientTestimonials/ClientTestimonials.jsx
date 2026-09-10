@@ -65,13 +65,10 @@ export const ClientTestimonials = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Badge & Title */}
         <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
-          {/* Pill Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1e1b4b]/10 border border-[#6366f1]/30 shadow-sm mb-4">
-            <FaStar className="w-3.5 h-3.5 text-[#6366f1]" />
-            <span className="text-xs sm:text-sm font-semibold text-[#4f46e5] tracking-wide">
-              Client Testimonials
-            </span>
-          </div>
+          {/* Eyebrow */}
+          <span className="text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase text-[#6366f1] mb-3">
+            Client Testimonials
+          </span>
 
           {/* Section Title */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0f172a] tracking-tight">

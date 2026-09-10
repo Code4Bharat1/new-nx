@@ -386,13 +386,10 @@ export const ProductsSection = () => {
       <div className="max-w-[1360px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center my-auto">
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-5 sm:mb-6 lg:mb-7 flex flex-col items-center">
-          {/* Eyebrow Pill Badge */}
-          <div className="inline-flex items-center gap-2 mb-2 px-3.5 py-1 rounded-full bg-blue-50/90 border border-blue-200/80 shadow-xs">
-            <span className="h-2 w-2 rounded-full bg-[#f97316] animate-pulse" />
-            <span className="text-[11px] sm:text-xs font-bold tracking-[0.18em] text-[#1e3a8a] uppercase">
-              Our Projects
-            </span>
-          </div>
+          {/* Eyebrow */}
+          <span className="text-[11px] sm:text-xs font-bold tracking-[0.2em] uppercase text-[#ff6600] mb-2">
+            Our Projects
+          </span>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[36px] font-black text-[#0B1330] tracking-tight leading-[1.18] mb-2">
             Software we built for ourselves,{" "}

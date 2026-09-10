@@ -231,13 +231,7 @@ export const AboutGlance: React.FC = () => {
                     {item.description}
                   </p>
 
-                  <div
-                    className="absolute bottom-0 left-0 right-0 h-[3.5px] transition-all duration-300"
-                    style={{
-                      backgroundColor: item.color,
-                      opacity: isHovered ? 1 : 0,
-                    }}
-                  />
+
                 </div>
               );
             })}
@@ -278,13 +272,7 @@ export const AboutGlance: React.FC = () => {
                     {item.description}
                   </p>
 
-                  <div
-                    className="absolute bottom-0 left-0 right-0 h-[3.5px] transition-all duration-300"
-                    style={{
-                      backgroundColor: item.color,
-                      opacity: isHovered ? 1 : 0,
-                    }}
-                  />
+
                 </div>
               );
             })}
@@ -332,13 +320,7 @@ export const AboutGlance: React.FC = () => {
                   </p>
                 </div>
 
-                <div
-                  className="absolute bottom-0 left-0 right-0 h-[3.5px] transition-all duration-300"
-                  style={{
-                    backgroundColor: item.color,
-                    opacity: isHovered ? 1 : 0,
-                  }}
-                />
+
               </div>
             );
           })}

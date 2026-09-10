@@ -347,14 +347,10 @@ export const ClientsSec = () => {
         >
           {/* ── LEFT COLUMN: Headline & Synchronized Active Testimonial Details ── */}
           <div className="lg:col-span-6 flex flex-col justify-center">
-            {/* Section Eyebrow & Headline */}
             <div className="mb-4 lg:mb-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/25 mb-2.5 w-fit">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#ff6600] animate-pulse" />
-                <span className="text-[11px] font-bold uppercase tracking-widest text-orange-400">
-                  Client Projects
-                </span>
-              </div>
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#ff6600] block mb-2">
+                Client Projects
+              </span>
               <h2 className="font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-[40px] text-white tracking-tight leading-[1.15]">
                 Hear it from the{" "}
                 <span className="text-[#ff6600]">people</span> we built for.

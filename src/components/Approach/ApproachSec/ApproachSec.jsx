@@ -111,14 +111,10 @@ const ApproachSec = () => {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
         <div className="text-center mb-6 sm:mb-8 space-y-2.5">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/15 border border-blue-400/30 shadow-xs">
-            <div className="w-2 h-2 bg-[#ff6600] rounded-full animate-pulse" />
-            <span className="text-xs text-cyan-300 font-bold uppercase tracking-widest">
-              Our Process Workflow
-            </span>
-          </div>
+          <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-cyan-400 block">
+            Our Process Workflow
+          </span>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight">
             Our Approach –{" "}

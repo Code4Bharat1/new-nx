@@ -146,13 +146,10 @@ const ValuesSection = () => {
       {/* Header Container */}
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8 relative z-10 mb-0">
         <div className="text-center space-y-1 animate-fade-up">
-          {/* Eyebrow Pill Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-blue-500/15 border border-blue-400/30 shadow-xs">
-            <div className="w-2 h-2 bg-[#ff6600] rounded-full animate-pulse" />
-            <span className="text-[11px] sm:text-xs text-cyan-300 font-bold uppercase tracking-wider">
-              Our Values
-            </span>
-          </div>
+          {/* Eyebrow */}
+          <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-cyan-400">
+            Our Values
+          </span>
 
           {/* Main Title */}
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">

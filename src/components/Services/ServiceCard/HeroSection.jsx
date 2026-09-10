@@ -89,14 +89,11 @@ const ServiceHeroSection = () => {
             variants={containerVariants}
             className="space-y-8"
           >
-            {/* Badge */}
+            {/* Eyebrow */}
             <motion.div variants={itemVariants}>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20">
-                <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-                <span className="text-sm text-blue-300 font-medium">
-                  Our Services
-                </span>
-              </div>
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-cyan-400 block">
+                Our Services
+              </span>
             </motion.div>
 
             {/* Main heading */}

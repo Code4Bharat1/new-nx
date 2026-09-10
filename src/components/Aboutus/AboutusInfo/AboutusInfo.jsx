@@ -164,14 +164,7 @@ const AboutusInfo = () => {
                     {item.description}
                   </p>
 
-                  {/* Bottom Accent Bar */}
-                  <div
-                    className="absolute bottom-0 left-0 right-0 h-[3px] transition-all duration-300"
-                    style={{
-                      backgroundColor: item.color,
-                      opacity: isHovered ? 1 : 0,
-                    }}
-                  />
+
                 </div>
               );
             })}
@@ -215,14 +208,7 @@ const AboutusInfo = () => {
                     {item.description}
                   </p>
 
-                  {/* Bottom Accent Bar */}
-                  <div
-                    className="absolute bottom-0 left-0 right-0 h-[3px] transition-all duration-300"
-                    style={{
-                      backgroundColor: item.color,
-                      opacity: isHovered ? 1 : 0,
-                    }}
-                  />
+
                 </div>
               );
             })}
