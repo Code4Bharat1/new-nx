@@ -251,9 +251,21 @@ const ProcessStep = ({ number, title, description, icon: Icon }) => (
 );
 
 export default function NexCoreLanding() {
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState(0);
+  const [isCapabilityPaused, setIsCapabilityPaused] = useState(false);
   const [hoveredStep, setHoveredStep] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
+
+  // Auto-cycle loop for Comprehensive AI Capabilities 4 cards (0 -> 1 -> 2 -> 3 -> 0)
+  useEffect(() => {
+    if (isCapabilityPaused) return;
+
+    const interval = setInterval(() => {
+      setHoveredCard((prev) => ((prev ?? 0) + 1) % 4);
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [isCapabilityPaused]);
 
   const globalClients = [
     { name: "Al Khaleej Technologies", country: "Qatar", flag: "🇶🇦" },
@@ -559,51 +571,107 @@ const testimonials = [
     },
   ];
 
-  const aiAgents = [
+  const agentDepartments = [
     {
-      icon: FileText,
-      title: "Invoice Processing AI",
-      description: "Automate finance workflows with precision.",
-    },
-    {
-      icon: UserCheck,
-      title: "HR Onboarding AI",
-      description: "Auto-onboard employees flawlessly.",
-    },
-    {
-      icon: Zap,
-      title: "Workflow Automation AI",
-      description: "Automate repetitive tasks effortlessly.",
-    },
-    {
-      icon: BarChart,
-      title: "Monitoring Agents",
-      description: "Real-time system & performance insights.",
-    },
-    {
-      icon: Shield,
-      title: "Compliance AI Agent",
-      description: "Monitor compliance automatically.",
-    },
-    {
-      icon: Users,
-      title: "Recruitment AI Assistant",
-      description: "Screen candidates 3x faster.",
-    },
-    {
+      name: "Finance",
+      themeColor: "text-[#2563eb]",
+      cardBg: "bg-[#f0f7ff]",
+      borderColor: "border-[#dbeafe] hover:border-blue-300",
+      iconBoxBg: "bg-[#dbeafe] text-[#2563eb]",
+      innerIconBg: "bg-blue-50 text-[#2563eb]",
+      barColor: "bg-[#2563eb]",
       icon: Database,
-      title: "Data Processing AI",
-      description: "Extract & analyze data instantly.",
+      description: "Automate finance workflows and unlock efficiency with AI agents.",
+      agentCount: "2 AI Agents",
+      agents: [
+        {
+          icon: FileText,
+          title: "Invoice Processing AI",
+          description: "Automate finance workflows with precision.",
+        },
+        {
+          icon: Database,
+          title: "Data Processing AI",
+          description: "Extract & analyze data instantly.",
+        },
+      ],
     },
     {
-      icon: MessageSquare,
-      title: "Marketing Automation AI",
-      description: "Automate campaigns end-to-end.",
+      name: "People",
+      themeColor: "text-[#9333ea]",
+      cardBg: "bg-[#faf5ff]",
+      borderColor: "border-[#f3e8ff] hover:border-purple-300",
+      iconBoxBg: "bg-[#f3e8ff] text-[#9333ea]",
+      innerIconBg: "bg-purple-50 text-[#9333ea]",
+      barColor: "bg-[#9333ea]",
+      icon: Users,
+      description: "Streamline HR operations and build stronger teams with AI.",
+      agentCount: "2 AI Agents",
+      agents: [
+        {
+          icon: UserCheck,
+          title: "HR Onboarding AI",
+          description: "Auto-onboard employees flawlessly.",
+        },
+        {
+          icon: Users,
+          title: "Recruitment AI Assistant",
+          description: "Screen candidates 3x faster.",
+        },
+      ],
     },
     {
+      name: "Operations",
+      themeColor: "text-[#16a34a]",
+      cardBg: "bg-[#f0fdf4]",
+      borderColor: "border-[#dcfce7] hover:border-green-300",
+      iconBoxBg: "bg-[#dcfce7] text-[#16a34a]",
+      innerIconBg: "bg-green-50 text-[#16a34a]",
+      barColor: "bg-[#16a34a]",
+      icon: Settings,
+      description: "Automate, monitor, and ensure compliance with intelligent agents.",
+      agentCount: "3 AI Agents",
+      agents: [
+        {
+          icon: Zap,
+          title: "Workflow Automation AI",
+          description: "Automate repetitive tasks effortlessly.",
+        },
+        {
+          icon: BarChart,
+          title: "Monitoring Agents",
+          description: "Real-time system & performance insights.",
+        },
+        {
+          icon: Shield,
+          title: "Compliance AI Agent",
+          description: "Monitor compliance automatically.",
+        },
+      ],
+    },
+    {
+      name: "Growth",
+      themeColor: "text-[#ea580c]",
+      cardBg: "bg-[#fff7ed]",
+      borderColor: "border-[#ffedd5] hover:border-orange-300",
+      iconBoxBg: "bg-[#ffedd5] text-[#ea580c]",
+      innerIconBg: "bg-orange-50 text-[#ea580c]",
+      barColor: "bg-[#ea580c]",
       icon: TrendingUp,
-      title: "Sales Assistant AI",
-      description: "Boost sales conversions with AI.",
+      description: "Drive engagement, conversions and revenue with AI agents.",
+      agentCount: "2 AI Agents",
+      agents: [
+        {
+          icon: MessageSquare,
+          title: "Marketing Automation AI",
+          description: "Automate campaigns end-to-end.",
+        },
+        {
+          icon: TrendingUp,
+          title: "Sales Assistant AI",
+          description: "Boost sales conversions with AI.",
+        },
+      ],
     },
   ];
 
@@ -1142,7 +1210,7 @@ const testimonials = [
               </Link>
             </div>
 
-            {/* 2. CENTER: CONTENT CARD (Justify-Center, only appears on hover) */}
+            {/* 2. CENTER: CONTENT CARD (Justify-Center, auto-loops through 4 cards) */}
             <div className="lg:col-span-4 flex items-center justify-center order-3 lg:order-2 w-full min-h-[300px]">
               {hoveredCard !== null && (() => {
                 const popupData = [
@@ -1186,10 +1254,12 @@ const testimonials = [
                 return (
                   <div
                     key={hoveredCard}
+                    onMouseEnter={() => setIsCapabilityPaused(true)}
+                    onMouseLeave={() => setIsCapabilityPaused(false)}
                     className="relative w-full max-w-[340px] xl:max-w-[360px] rounded-3xl p-6 sm:p-7 bg-white border border-gray-100"
                     style={{
                       boxShadow: "0 20px 50px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04)",
-                      animation: "popupFadeIn 0.2s ease-out both",
+                      animation: "popupFadeIn 0.25s ease-out both",
                     }}
                   >
                     {/* Speech bubble pointer arrow on the right pointing to pyramid on the right */}
@@ -1198,7 +1268,7 @@ const testimonials = [
                       style={{ top: pointerTops[hoveredCard] }}
                     />
 
-                    {/* Header row with Number, Divider, Title, and Close Button */}
+                    {/* Header row with Number, Divider, Title, and Indicator Pills */}
                     <div className="flex items-center justify-between mb-2.5">
                       <div className="flex items-center gap-3">
                         <span
@@ -1212,13 +1282,25 @@ const testimonials = [
                           {p.title}
                         </h3>
                       </div>
-                      <button
-                        onClick={() => setHoveredCard(null)}
-                        className="text-gray-400 hover:text-gray-600 transition-colors p-1 -mr-1 -mt-1 rounded-full hover:bg-gray-100"
-                        aria-label="Close"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
+                      
+                      {/* 4 Loop Indicator Pills */}
+                      <div className="flex items-center gap-1.5 bg-gray-50 px-2.5 py-1.5 rounded-full border border-gray-100">
+                        {[0, 1, 2, 3].map((idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setHoveredCard(idx)}
+                            className={`h-1.5 rounded-full transition-all duration-300 ${
+                              hoveredCard === idx
+                                ? "w-4"
+                                : "w-1.5 bg-gray-300 hover:bg-gray-400"
+                            }`}
+                            style={{
+                              backgroundColor: hoveredCard === idx ? p.numColor : undefined,
+                            }}
+                            aria-label={`Go to card ${idx + 1}`}
+                          />
+                        ))}
+                      </div>
                     </div>
 
                     {/* Description */}
@@ -1264,12 +1346,16 @@ const testimonials = [
                 />
 
                 {/* ── INTERACTIVE HOTSPOT OVERLAYS ── */}
-                <div className="absolute inset-0 z-20">
+                <div
+                  className="absolute inset-0 z-20"
+                  onMouseEnter={() => setIsCapabilityPaused(true)}
+                  onMouseLeave={() => setIsCapabilityPaused(false)}
+                >
 
                   {/* Layer 1: Intelligent Automation (Top Cyan Cap) */}
                   <div
                     onMouseEnter={() => setHoveredCard(0)}
-                    onMouseLeave={() => setHoveredCard(null)}
+                    onClick={() => setHoveredCard(0)}
                     className={`absolute top-[7%] left-[27%] w-[46%] h-[24%] rounded-t-xl cursor-pointer transition-all duration-300 flex flex-col items-center justify-center ${
                       hoveredCard === 0 ? "scale-[1.04] -translate-y-1" : ""
                     }`}
@@ -1288,7 +1374,7 @@ const testimonials = [
                   {/* Layer 2: Machine Learning Models (Second Purple Slab) */}
                   <div
                     onMouseEnter={() => setHoveredCard(1)}
-                    onMouseLeave={() => setHoveredCard(null)}
+                    onClick={() => setHoveredCard(1)}
                     className={`absolute top-[29%] left-[19%] w-[62%] h-[23%] cursor-pointer transition-all duration-300 flex flex-col items-center justify-center ${
                       hoveredCard === 1 ? "scale-[1.04] -translate-y-1" : ""
                     }`}
@@ -1307,7 +1393,7 @@ const testimonials = [
                   {/* Layer 3: Data Intelligence (Third Royal Blue Slab) */}
                   <div
                     onMouseEnter={() => setHoveredCard(2)}
-                    onMouseLeave={() => setHoveredCard(null)}
+                    onClick={() => setHoveredCard(2)}
                     className={`absolute top-[51%] left-[11%] w-[78%] h-[23%] cursor-pointer transition-all duration-300 flex flex-col items-center justify-center ${
                       hoveredCard === 2 ? "scale-[1.04] -translate-y-1" : ""
                     }`}
@@ -1326,7 +1412,7 @@ const testimonials = [
                   {/* Layer 4: Secure AI Infrastructure (Bottom Slate Navy Slab) */}
                   <div
                     onMouseEnter={() => setHoveredCard(3)}
-                    onMouseLeave={() => setHoveredCard(null)}
+                    onClick={() => setHoveredCard(3)}
                     className={`absolute top-[73%] left-[3%] w-[94%] h-[25%] rounded-b-xl cursor-pointer transition-all duration-300 flex flex-col items-center justify-center ${
                       hoveredCard === 3 ? "scale-[1.04] -translate-y-1" : ""
                     }`}
@@ -1488,35 +1574,108 @@ const testimonials = [
         </div>
       </section>
 
-      {/* AI Agents Section */}
+      {/* AI Agents Section - 4-Column Department Redesign */}
       <section className="relative bg-white py-16 sm:py-20 lg:py-24 overflow-hidden">
-        <div className="absolute top-0 right-0 w-72 h-72 sm:w-96 sm:h-96 bg-blue-100 rounded-full blur-3xl opacity-20"></div>
+        {/* Subtle background ambient accent */}
+        <div className="absolute top-0 right-0 w-72 h-72 sm:w-96 sm:h-96 bg-blue-100/30 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Subtle decorative dot pattern in bottom right corner */}
+        <div className="absolute -bottom-4 right-8 opacity-25 pointer-events-none hidden lg:grid grid-cols-6 gap-2.5">
+          {[...Array(18)].map((_, i) => (
+            <div key={i} className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+          ))}
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-8 sm:mb-10">
             <HeroBadge icon={Cpu} text="HUMAN-LIKE AI AGENTS" />
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-center text-[#1f2937]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-center text-[#1f2937] tracking-tight">
             Build Your AI Agent in{" "}
-            <span className="text-[#1e40af]">7 Days</span>
+            <span className="text-[#2563eb]">7 Days</span>
           </h2>
-          <p className="text-center text-sm sm:text-base md:text-lg text-gray-600 mt-4 mb-12 sm:mb-16 max-w-2xl mx-auto">
+          <p className="text-center text-sm sm:text-base md:text-lg text-gray-600 mt-4 mb-12 sm:mb-14 max-w-2xl mx-auto">
             Deploy intelligent automation agents that work 24/7 to transform
             your operations
           </p>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6">
-            {aiAgents.map((agent, idx) => (
-              <AIAgentCard key={idx} {...agent} />
-            ))}
+
+          {/* 4-Column Department Layout (Desktop: 4 cols, Tablet: 2 cols, Mobile: 1 col) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 items-stretch">
+            {agentDepartments.map((dept, dIdx) => {
+              const DeptIcon = dept.icon;
+              return (
+                <div
+                  key={dIdx}
+                  className={`group relative ${dept.cardBg} border ${dept.borderColor} rounded-2xl sm:rounded-3xl p-5 sm:p-6 transition-all duration-300 hover:shadow-md hover:-translate-y-1 flex flex-col justify-between`}
+                >
+                  <div>
+                    {/* Department Header */}
+                    <div className="flex items-start gap-3.5 mb-5 sm:mb-6">
+                      <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 ${dept.iconBoxBg}`}>
+                        <DeptIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+                      </div>
+                      <div>
+                        <h3 className={`text-xl font-bold ${dept.themeColor} leading-tight`}>
+                          {dept.name}
+                        </h3>
+                        <p className="text-xs sm:text-[13px] text-gray-600 mt-1 leading-relaxed">
+                          {dept.description}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Agent Items - Clean White Inner Cards */}
+                    <div className="space-y-3">
+                      {dept.agents.map((agent, aIdx) => {
+                        const AgentIcon = agent.icon;
+                        return (
+                          <div
+                            key={aIdx}
+                            className="group/agent bg-white border border-gray-100 hover:border-gray-200/90 rounded-xl sm:rounded-2xl p-3 sm:p-3.5 flex items-center gap-3 shadow-[0_1px_3px_rgba(0,0,0,0.03)] hover:shadow-sm transition-all duration-200 cursor-pointer"
+                          >
+                            <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${dept.innerIconBg}`}>
+                              <AgentIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+                            </div>
+                            <div className="flex-1 min-w-0 pr-1">
+                              <h4 className="text-xs sm:text-[13px] font-bold text-slate-900 leading-snug group-hover/agent:text-slate-950">
+                                {agent.title}
+                              </h4>
+                              <p className="text-[11px] text-gray-500 mt-0.5 leading-snug line-clamp-2">
+                                {agent.description}
+                              </p>
+                            </div>
+                            <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-400 group-hover/agent:text-gray-700 group-hover/agent:translate-x-1 transition-transform duration-200 flex-shrink-0" />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Bottom Line & Agent Count */}
+                  <div className="mt-6 pt-3 flex items-center gap-2.5">
+                    <span className={`w-7 h-1 rounded-full ${dept.barColor}`} />
+                    <span className="text-xs font-semibold text-gray-500 tracking-wide">
+                      {dept.agentCount}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-          <div className="text-center mt-10 sm:mt-12">
+
+          {/* Centered CTA */}
+          <div className="text-center mt-12 sm:mt-16 flex flex-col items-center">
             <Link
               href="/contactus"
-              className="group bg-[#f97316] hover:bg-[#ea580c] text-white px-8 sm:px-10 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all inline-flex items-center gap-2 sm:gap-3"
+              className="group bg-[#ea580c] hover:bg-[#c2410c] text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-xl font-bold text-base sm:text-lg shadow-lg shadow-orange-500/20 hover:shadow-xl hover:shadow-orange-500/30 hover:scale-105 transition-all inline-flex items-center gap-2.5 sm:gap-3"
             >
               <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
-              Get a Free Demo
-              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+              <span>Get a Free Demo</span>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
+            <p className="text-xs sm:text-sm text-gray-500 font-medium text-center mt-4">
+              No commitment &nbsp;•&nbsp; See it in action &nbsp;•&nbsp; Built for your business
+            </p>
           </div>
         </div>
       </section>
