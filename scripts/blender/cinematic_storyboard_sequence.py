@@ -6,7 +6,7 @@ Matching Reference Storyboard (Frames 01-06):
 - Scene 2: Robot hand enters from RIGHT
 - Scene 3: Fingers touch exactly at CENTER with bright white-blue spark
 - Scene 4: Energy forms circular futuristic ring (cyan, violet, warm orange)
-- Scene 5: "AI Solutions" text reveals in center
+- Scene 5: "AI Solutions" text reveals in center gg
 - Scene 6: Final hero frame with rotating energy ring and camera push-in
 """
 
